@@ -8,6 +8,20 @@ class ProductProvider extends Component {
     state = {
         products: storeProducts,
         detailProduct:detailProduct
+    };
+    componentDidMount(){
+        this.setProducts();
+    }
+    setProducts = () =>{
+        let tempProducts = [];
+        storeProducts.forEach(item =>{
+            const singleItem = {...item};
+            tempProducts = [...tempProducts,singleItem];
+        })
+        this.setState(()=>{
+            return {products: tempProducts}
+        })
+
     }
     handleDetail = () =>{
         console.log('hello from detail');
