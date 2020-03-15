@@ -7,14 +7,15 @@ export default class Details extends Component {
         return (
             <ProductConsumer>
                 {(value)=>{
-                    const {id,
+                    const {
+                        id,
                     company,
                     img,
                     info,
                     price,
                     title,
                     inCart
-                    } = console.log(value.detailProduct);
+                    } = value.detailProduct;
                     
                     return(
                         <div className="container py-5">
@@ -54,6 +55,14 @@ export default class Details extends Component {
                                             <ButtonContainer>back to Products 
                                             </ButtonContainer>
                                         </Link>
+                                        <ButtonContainer 
+                                        cart
+                                        disabled={inCart?true:false}
+                                        onClick={()=>{
+                                            value.addToCart(id);
+                                        }}>
+                                            {inCart?'inCart':"add to cart"}
+                                        </ButtonContainer>
                                     </div>
                                 </div>
                             </div>
