@@ -1,13 +1,18 @@
 import * as firebase from 'firebase';
-const config = {
-    apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
-    databaseURL: process.env.REACT_APP_FIREBASE_DATABASEURL,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
-    clientId: process.env.REACT_APP_CLIENTID
-}
-firebase.initializeApp(config);
+var firebaseConfig = {
+    apiKey: "AIzaSyAl0PY5fM40wqMFmhuF8XxBq0YIn_au6hQ",
+    authDomain: "proyectoux-d7490.firebaseapp.com",
+    databaseURL: "https://proyectoux-d7490.firebaseio.com",
+    projectId: "proyectoux-d7490",
+    storageBucket: "proyectoux-d7490.appspot.com",
+    messagingSenderId: "885633033819",
+    appId: "1:885633033819:web:684173c2920cea641b417e",
+    measurementId: "G-N73EV4812D"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 const firebaseAuth = (provider) =>
