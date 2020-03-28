@@ -19,7 +19,7 @@ const firebaseAuth = (provider) =>
     firebase.auth().signInWithPopup(provider);
 
 const database = firebase.auth().ref();
-
+export const firebase = this.firebase;
 export const authRef = firebase.auth();
 export const loginGoogle = () => firebaseAuth(googleProvider);
 export const treasuresRef = database.child('treasures');
