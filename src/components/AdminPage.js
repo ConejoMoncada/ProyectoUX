@@ -4,32 +4,20 @@ import firebase from 'firebase'
 //import {mainFirebase} from '../config/firebase';
 
 export default class AdminPage extends Component {
-    
+
     constructor(props) {
+
         super(props);
         this.state = { id: 0, title: '', img: '', price: 0, company: '', info: '', inCart: false, count: 0, total: 0 };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        var firebaseConfig = {
-            apiKey: "AIzaSyAl0PY5fM40wqMFmhuF8XxBq0YIn_au6hQ",
-            authDomain: "proyectoux-d7490.firebaseapp.com",
-            databaseURL: "https://proyectoux-d7490.firebaseio.com",
-            projectId: "proyectoux-d7490",
-            storageBucket: "proyectoux-d7490.appspot.com",
-            messagingSenderId: "885633033819",
-            appId: "1:885633033819:web:684173c2920cea641b417e",
-            measurementId: "G-N73EV4812D"
-          };
-          // Initialize Firebase
-          firebase.initializeApp(firebaseConfig);
-          firebase.analytics();
 
-      
     }
-     saveMessage() {
+    saveMessage() {
         // Add a new message entry to the Firebase database.
         return firebase.firestore().collection('messages').add({
+
             id: this.state.id,
             title: this.state.title,
             img: this.state.img,
@@ -39,7 +27,7 @@ export default class AdminPage extends Component {
             inCart: this.state.inCart,
             count: this.state.count,
             total: this.state.total,
-           
+
         }).catch(function (error) {
             console.error('Error writing new message to Firebase Database', error);
         });
@@ -59,94 +47,120 @@ export default class AdminPage extends Component {
 
     handleSubmit(event) {
         // Saves a new message on the Cloud Firestore.
-        this.saveMessage(); 
-
-
-        alert('INFO: ' + this.state.info + ' ID:' + this.state.id);
+        this.saveMessage();
+        alert('SE HA INGRESADO EXITOSAMENTE EL PRODUCTO A LA BASE DE DATOS');
         event.preventDefault();
+        this.setState({
+            id: 0, 
+            title: '', 
+            img: '', 
+            price: 0, 
+            company: '', 
+            info: ''
+        });
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    ID:
+
+            <div className="d-flex justify-content-center align-items-center">
+                <br />
+                <br />
+                <br />
+                <form onSubmit={this.handleSubmit}>
+                    <div className="row">
+
+                        <div className="col-10 mx-auto text-center text-slanted text-blue my-5">
+
+                            <label>
+                                <h2>
+                                    ITEM ID:     
+                        <input
+                                        name="id"
+                                        type="number"
+                                        value={this.state.id}
+                                        onChange={this.handleChange}
+                                    />
+                                </h2>
+                            </label>
+                            <br />
+
+                            <label>
+                                <h2>
+                                    TITLE:
                    <input
-                        name="id"
-                        type="number"
-                        value={this.state.id}
-                        onChange={this.handleChange}
-                    />
+                                        name="title"
+                                        type="text"
+                                        value={this.state.title}
+                                        onChange={this.handleChange}
+                                    />
+                                </h2>
+                            </label>
+                            <br />
 
-                </label>
-                <br />
-
-                <label>
-                    TITLE:
-                   <input
-                        name="title"
-                        type="text"
-                        value={this.state.title}
-                        onChange={this.handleChange}
-                    />
-
-                </label>
-                <br />
-
-                <label>
-                    IMAGE:
+                            <label>
+                                <h2>
+                                    IMAGE:
                     <input
-                        name="img"
-                        type="text"
-                        value={this.state.img}
-                        onChange={this.handleChange}
-                    />
+                                        name="img"
+                                        type="text"
+                                        value={this.state.img}
+                                        onChange={this.handleChange}
+                                    />
+                                </h2>
+                            </label>
 
-                </label>
+                            <br />
 
-                <br />
-
-                <label>
-                    PRICE:
+                            <label>
+                                <h2>
+                                    PRICE $:
                     <input
-                        name="price"
-                        type="number"
-                        value={this.state.price}
-                        onChange={this.handleChange}
-                    />
+                                        name="price"
+                                        type="number"
+                                        value={this.state.price}
+                                        onChange={this.handleChange}
+                                    />
+                                </h2>
+                            </label>
 
-                </label>
+                            <br />
 
-                <br />
-
-                <label>
-                    COMPANY:
+                            <label>
+                                <h2>
+                                    COMPANY:
                     <input
-                        name="company"
-                        type="text"
-                        value={this.state.company}
-                        onChange={this.handleChange}
-                    />
+                                        name="company"
+                                        type="text"
+                                        value={this.state.company}
+                                        onChange={this.handleChange}
+                                    />
+                                </h2>
+                            </label>
 
-                </label>
+                            <br />
 
-                <br />
+                            <label>
+                                <h2>
+                                    INFO:
+                    <br />
 
-                <label>
-                    INFO:
-                    <input
-                        name="info"
-                        type="text"
-                        value={this.state.info}
-                        onChange={this.handleChange}
-                    />
-
-                </label>
-                <br />
-                <input type="submit" value="Submit" />
-            </form>
+                                    <textarea
+                                        name="info"
+                                        type="text"
+                                        value={this.state.info}
+                                        onChange={this.handleChange}
+                                    />
+                                </h2>
+                            </label>
+                            <br />
+                            <input type="submit" value="Submit" />
+                        </div>
+                    </div>
+                </form>
+            </div>
         );
     }
-    
+
 
 }
